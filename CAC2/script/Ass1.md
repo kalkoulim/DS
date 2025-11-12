@@ -9,4 +9,4 @@ Base de donnée choisie: Breast Cancer Wisconsin (Diagnostic)
 
 
 
-
+<img src="Capture d'écran (57).png" style="height:1000px;margin-right:1000px"/>
