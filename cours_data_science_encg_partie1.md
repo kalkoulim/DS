@@ -1,6 +1,7 @@
 # COURS DE SCIENCE DES DONNÉES
 ## École Nationale de Commerce et de Gestion (ENCG) - 4ème Année
 ##KALKOULI Mounia
+<img src="KALKOULI.png" style="height:1000px;margin-right:1000px"/>
 
 ---
 
