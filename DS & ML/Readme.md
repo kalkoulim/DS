@@ -41,13 +41,12 @@ Le dataset combine :
 ## Compte rendu : Modélisation par Machine Learning pour le dépistage de l’autisme chez l’enfant
 1. Introduction
 
-1. Contexte général
 
 - Le dépistage précoce de l’Autistic Spectrum Disorder (ASD) constitue un enjeu essentiel pour améliorer la prise en charge des enfants présentant des troubles neurodéveloppementaux. Les méthodes de dépistage traditionnelles reposent principalement sur des questionnaires complétés par les parents ou les professionnels de santé. Le jeu de données ASD Screening Data for Children proposé par Thabtah (2017) rassemble les réponses à un questionnaire standardisé (AQ-10), accompagnées d’informations démographiques.
 
 - L’objectif de ce projet est d’évaluer si un algorithme de Machine Learning peut, à partir des dix items comportementaux et des variables contextuelles associées, prédire de manière fiable le risque qu’un enfant présente un trouble du spectre de l’autisme.
 
-## Objectifs du projet
+- Objectifs du projet
 
  Nettoyer et préparer le jeu de données pour en assurer la qualité.
 
