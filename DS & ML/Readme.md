@@ -135,7 +135,17 @@ Ces résultats sont cohérents avec les observations cliniques rapportées dans 
 
 4.4 Interpretation des graphes:
 
+![age](age.png)
 Distribution de l'âge : L'histogramme de l'« âge » semble être asymétrique à droite, ce qui indique que la majorité des enfants de l'ensemble de données sont plus jeunes. La tendance centrale montre une fréquence plus élevée dans les tranches d'âge inférieures, probablement entre 4 et 7 ans. La étendue suggère une fourchette d'environ 4 à 12 ans, avec moins d'observations aux âges plus avancés.
+
+![result](result.png)
+Distribution des scores de résultats : L'histogramme du score de « résultat » semble être bimodal, avec des pics possibles autour de 5-6 et à nouveau autour de 10. La distribution ne semble pas parfaitement symétrique, mais plutôt montrer deux groupes distincts de scores. La tendance centrale n'est pas clairement définie par un seul pic, mais plutôt par ces deux modes. L'étendue couvre une gamme de scores, avec des valeurs observées d'environ 0 à 18, indiquant une variabilité dans les résultats de dépistage.
+
+![aq](aq.png)
+Distribution des scores AQ : L'histogramme du « score AQ » présente également une distribution bimodale ou peut-être même multimodale. Il y a un pic notable aux scores inférieurs, autour de 3-5, et un autre pic significatif aux scores supérieurs, autour de 9-10. Cela suggère deux groupes principaux au sein de l'ensemble de données basés sur leurs scores AQ. La tendance centrale est répartie sur ces multiples pics. L'étendue des scores AQ varie de 0 à 10, ce qui est le score maximum possible étant donné qu'il s'agit d'une somme de dix scores A, chacun binaire (0 ou 1).
+
+
+
 ##5. Conclusion
 
 Bilan général
