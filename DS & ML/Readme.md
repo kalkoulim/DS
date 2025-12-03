@@ -39,14 +39,15 @@ Le dataset combine :
 - Le score global “screening score” (souvent calculé à partir des réponses A1–A10) peut aussi être présent dans certaines versions du dataset — mais ce score est souvent utilisé pour déterminer la valeur de la target (c.-à-d. si le score dépasse un seuil → ASD). 
 
 ## Compte rendu : Modélisation par Machine Learning pour le dépistage de l’autisme chez l’enfant
-1. Introduction
+
+##1. Introduction
 
 
 - Le dépistage précoce de l’Autistic Spectrum Disorder (ASD) constitue un enjeu essentiel pour améliorer la prise en charge des enfants présentant des troubles neurodéveloppementaux. Les méthodes de dépistage traditionnelles reposent principalement sur des questionnaires complétés par les parents ou les professionnels de santé. Le jeu de données ASD Screening Data for Children proposé par Thabtah (2017) rassemble les réponses à un questionnaire standardisé (AQ-10), accompagnées d’informations démographiques.
 
 - L’objectif de ce projet est d’évaluer si un algorithme de Machine Learning peut, à partir des dix items comportementaux et des variables contextuelles associées, prédire de manière fiable le risque qu’un enfant présente un trouble du spectre de l’autisme.
 
-- Objectifs du projet
+##2. Objectifs du projet
 
  Nettoyer et préparer le jeu de données pour en assurer la qualité.
 
@@ -58,9 +59,9 @@ Le dataset combine :
 
  Analyser les performances et les erreurs du modèle final.
 
-2. Méthodologie
+##3. Méthodologie
 
-2.1 Préparation et nettoyage des données
+3.1 Préparation et nettoyage des données
 Plusieurs étapes ont été nécessaires pour préparer les données :
 
 Gestion des valeurs manquantes : certaines variables démographiques (âge, ethnicité) comportaient des données absentes, traitées par imputation ou suppression selon leur fréquence.
@@ -71,28 +72,28 @@ Normalisation des variables numériques : étant donné l’hétérogénéité d
 
 Séparation des données : le jeu de données a été divisé en 80% pour l’entraînement et 20% pour le test, avec stratification pour conserver la proportion des classes.
 
-2.2 Choix des modèles et justification
+3.2 Choix des modèles et justification
 Trois algorithmes de nature différente ont été retenus :
 
-Régression logistique
+-Régression logistique
 
  Atouts : simplicité, robustesse, interprétabilité.
 
  Raison du choix : excellente référence de départ pour un problème de classification binaire.
 
-Random Forest
+-Random Forest
 
  Atouts : gestion des relations non linéaires, résistance au bruit, bonne performance sur données tabulaires.
 
  Raison du choix : offre de très bons résultats généraux tout en limitant le surapprentissage grâce à la combinaison d’arbres.
 
-Support Vector Machine (SVM)
+-Support Vector Machine (SVM)
 
  Atouts : adapté aux petits jeux de données, capable de définir des frontières de décision complexes.
 
  Raison du choix : permet d’évaluer une approche basée sur la marge maximale, cohérente avec une stratégie de normalisation.
 
-2.3 Validation et optimisation
+3.3 Validation et optimisation
 Afin d’assurer la fiabilité de l’évaluation :
 
  Validation croisée : 5-Fold Cross-Validation pour réduire l’influence du découpage des données.
@@ -104,9 +105,9 @@ Optimisation par GridSearchCV des hyperparamètres :
   SVM : C, kernel, gamma.
 La métrique principale retenue pour l’optimisation est le F1-score, plus appropriée lorsque les classes sont déséquilibrées.
 
-3. Résultats et discussion
+##4. Résultats et discussion
 
-3.1 Performances globales (exemple illustratif)
+4.1 Performances globales (exemple illustratif)
 Modèle	Accuracy	F1-score	ROC-AUC
 Régression logistique	~0.89	~0.88	~0.90
 Random Forest	~0.93	~0.92	~0.95
@@ -114,7 +115,7 @@ SVM	~0.91	~0.90	~0.93
 
 Le modèle Random Forest offre les meilleures performances globales, grâce à sa capacité à modéliser la structure non linéaire des réponses comportementales et des variables démographiques.
 
-3.2 Analyse des erreurs : matrice de confusion
+4.2 Analyse des erreurs : matrice de confusion
 La matrice de confusion met en évidence deux types d’erreurs :
 
 Faux positifs (FP) : enfant identifié comme “ASD” à tort — impact limité, car un sur-dépistage est préférable à un sous-dépistage.
@@ -122,7 +123,7 @@ Faux positifs (FP) : enfant identifié comme “ASD” à tort — impact limit�
 Faux négatifs (FN) : enfant identifié comme “non-ASD” alors qu’il présente un risque — c’est l’erreur la plus critique.
 Le Random Forest tend à minimiser ces faux négatifs, ce qui en fait un candidat pertinent pour une application clinique.
 
-3.3 Analyse des variables importantes
+4.3 Analyse des variables importantes
 Les principales variables discriminantes du modèle Random Forest sont :
 
 Les scores comportementaux A1–A10
@@ -131,7 +132,11 @@ L’existence d’antécédents familiaux
 L’historique de jaunisse, variable déjà corrélée à certains facteurs dans la littérature
 
 Ces résultats sont cohérents avec les observations cliniques rapportées dans les études antérieures.
-4. Conclusion
+
+4.4 Interpretation des graphes:
+
+Distribution de l'âge : L'histogramme de l'« âge » semble être asymétrique à droite, ce qui indique que la majorité des enfants de l'ensemble de données sont plus jeunes. La tendance centrale montre une fréquence plus élevée dans les tranches d'âge inférieures, probablement entre 4 et 7 ans. La étendue suggère une fourchette d'environ 4 à 12 ans, avec moins d'observations aux âges plus avancés.
+##5. Conclusion
 
 Bilan général
 Le projet a permis de mettre au point un modèle supervisé performant capable d’estimer le risque d’autisme chez l’enfant à partir d’un jeu de données réel. Le modèle Random Forest optimisé se distingue par ses résultats supérieurs sur les trois principales métriques (Accuracy, F1-score et ROC-AUC).
