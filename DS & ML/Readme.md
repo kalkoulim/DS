@@ -1,6 +1,6 @@
 Le dataset “Autistic Spectrum Disorder Screening Data for Children” (Thabtah, 2017)
 
-![caleb](caleb.jpg)
+![caleb](cal.png)
 
 --
 
