@@ -40,14 +40,14 @@ Le dataset combine :
 
 ## Compte rendu : Modélisation par Machine Learning pour le dépistage de l’autisme chez l’enfant
 
-##1. Introduction
+## 1. Introduction
 
 
 - Le dépistage précoce de l’Autistic Spectrum Disorder (ASD) constitue un enjeu essentiel pour améliorer la prise en charge des enfants présentant des troubles neurodéveloppementaux. Les méthodes de dépistage traditionnelles reposent principalement sur des questionnaires complétés par les parents ou les professionnels de santé. Le jeu de données ASD Screening Data for Children proposé par Thabtah (2017) rassemble les réponses à un questionnaire standardisé (AQ-10), accompagnées d’informations démographiques.
 
 - L’objectif de ce projet est d’évaluer si un algorithme de Machine Learning peut, à partir des dix items comportementaux et des variables contextuelles associées, prédire de manière fiable le risque qu’un enfant présente un trouble du spectre de l’autisme.
 
-##2. Objectifs du projet
+## 2. Objectifs du projet
 
  Nettoyer et préparer le jeu de données pour en assurer la qualité.
 
@@ -59,7 +59,7 @@ Le dataset combine :
 
  Analyser les performances et les erreurs du modèle final.
 
-##3. Méthodologie
+## 3. Méthodologie
 
 3.1 Préparation et nettoyage des données
 Plusieurs étapes ont été nécessaires pour préparer les données :
@@ -105,7 +105,7 @@ Optimisation par GridSearchCV des hyperparamètres :
   SVM : C, kernel, gamma.
 La métrique principale retenue pour l’optimisation est le F1-score, plus appropriée lorsque les classes sont déséquilibrées.
 
-##4. Résultats et discussion
+## 4. Résultats et discussion
 
 4.1 Performances globales (exemple illustratif)
 Modèle	Accuracy	F1-score	ROC-AUC
@@ -146,7 +146,7 @@ Distribution des scores AQ : L'histogramme du « score AQ » présente égalemen
 
 
 
-##5. Conclusion
+## 5. Conclusion
 
 Bilan général
 Le projet a permis de mettre au point un modèle supervisé performant capable d’estimer le risque d’autisme chez l’enfant à partir d’un jeu de données réel. Le modèle Random Forest optimisé se distingue par ses résultats supérieurs sur les trois principales métriques (Accuracy, F1-score et ROC-AUC).
