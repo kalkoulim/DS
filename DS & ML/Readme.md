@@ -1,6 +1,6 @@
 Le dataset “Autistic Spectrum Disorder Screening Data for Children” (Thabtah, 2017)
-<img src="DS & ML/caleb-woods-ecRuhwPIW7c-unsplash.jpg" style="height:1000px;margin-right:1000px"/> 
 
+![caleb](caleb.jpg)
 
 --
 
