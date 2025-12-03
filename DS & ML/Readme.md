@@ -61,7 +61,7 @@ Le dataset combine :
 
 ## 3. Méthodologie
 
-3.1 Préparation et nettoyage des données
+### 3.1 Préparation et nettoyage des données
 Plusieurs étapes ont été nécessaires pour préparer les données :
 
 Gestion des valeurs manquantes : certaines variables démographiques (âge, ethnicité) comportaient des données absentes, traitées par imputation ou suppression selon leur fréquence.
@@ -72,7 +72,7 @@ Normalisation des variables numériques : étant donné l’hétérogénéité d
 
 Séparation des données : le jeu de données a été divisé en 80% pour l’entraînement et 20% pour le test, avec stratification pour conserver la proportion des classes.
 
-3.2 Choix des modèles et justification
+### 3.2 Choix des modèles et justification
 Trois algorithmes de nature différente ont été retenus :
 
 -Régression logistique
@@ -93,7 +93,7 @@ Trois algorithmes de nature différente ont été retenus :
 
  Raison du choix : permet d’évaluer une approche basée sur la marge maximale, cohérente avec une stratégie de normalisation.
 
-3.3 Validation et optimisation
+### 3.3 Validation et optimisation
 Afin d’assurer la fiabilité de l’évaluation :
 
  Validation croisée : 5-Fold Cross-Validation pour réduire l’influence du découpage des données.
@@ -107,7 +107,7 @@ La métrique principale retenue pour l’optimisation est le F1-score, plus appr
 
 ## 4. Résultats et discussion
 
-4.1 Performances globales (exemple illustratif)
+### 4.1 Performances globales (exemple illustratif)
 Modèle	Accuracy	F1-score	ROC-AUC
 Régression logistique	~0.89	~0.88	~0.90
 Random Forest	~0.93	~0.92	~0.95
@@ -115,7 +115,7 @@ SVM	~0.91	~0.90	~0.93
 
 Le modèle Random Forest offre les meilleures performances globales, grâce à sa capacité à modéliser la structure non linéaire des réponses comportementales et des variables démographiques.
 
-4.2 Analyse des erreurs : matrice de confusion
+### 4.2 Analyse des erreurs : matrice de confusion
 La matrice de confusion met en évidence deux types d’erreurs :
 
 Faux positifs (FP) : enfant identifié comme “ASD” à tort — impact limité, car un sur-dépistage est préférable à un sous-dépistage.
@@ -123,7 +123,7 @@ Faux positifs (FP) : enfant identifié comme “ASD” à tort — impact limit�
 Faux négatifs (FN) : enfant identifié comme “non-ASD” alors qu’il présente un risque — c’est l’erreur la plus critique.
 Le Random Forest tend à minimiser ces faux négatifs, ce qui en fait un candidat pertinent pour une application clinique.
 
-4.3 Analyse des variables importantes
+### 4.3 Analyse des variables importantes
 Les principales variables discriminantes du modèle Random Forest sont :
 
 Les scores comportementaux A1–A10
@@ -133,7 +133,7 @@ L’historique de jaunisse, variable déjà corrélée à certains facteurs dans
 
 Ces résultats sont cohérents avec les observations cliniques rapportées dans les études antérieures.
 
-4.4 Interpretation des graphes:
+### 4.4 Interpretation des graphes:
 
 ![age](age.png)
 Distribution de l'âge : L'histogramme de l'« âge » semble être asymétrique à droite, ce qui indique que la majorité des enfants de l'ensemble de données sont plus jeunes. La tendance centrale montre une fréquence plus élevée dans les tranches d'âge inférieures, probablement entre 4 et 7 ans. La étendue suggère une fourchette d'environ 4 à 12 ans, avec moins d'observations aux âges plus avancés.
@@ -148,7 +148,7 @@ Distribution des scores AQ : L'histogramme du « score AQ » présente égalemen
 
 ## 5. Conclusion
 
-Bilan général
+- Bilan général
 Le projet a permis de mettre au point un modèle supervisé performant capable d’estimer le risque d’autisme chez l’enfant à partir d’un jeu de données réel. Le modèle Random Forest optimisé se distingue par ses résultats supérieurs sur les trois principales métriques (Accuracy, F1-score et ROC-AUC).
 
 Limites
@@ -161,7 +161,7 @@ Limites
 
 - Interprétation du modèle plus complexe que pour la régression logistique.
 
-Pistes d’amélioration
+- Pistes d’amélioration
 
 - Explorer des modèles plus avancés (XGBoost, LightGBM).
 
