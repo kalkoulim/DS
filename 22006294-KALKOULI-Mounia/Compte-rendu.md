@@ -3,7 +3,7 @@
 # 📘 FOREST FIRES
 
 
-![FIRE](FIRE.png)
+![FIRE](FIRE.jpeg)
 
 ---
 
