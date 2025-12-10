@@ -43,14 +43,10 @@ Temporelles : month (jan–dec), day (mon–sun).
 
 Indices FWI : FFMC, DMC, DC, ISI (indices de sécheresse / inflammabilité).
 
-​
-
 Météo directe : temp (°C), RH (% humidité), wind (km/h), rain (mm/m²).
 ​y (target) :
 
 area : surface brûlée en hectares, de 0 à ~1090 ha, très fortement concentrée près de 0 (beaucoup de petits feux).
-
-​
 
 Dans l’article original, ln(area + 1) est utilisé pour rendre le problème de régression plus stable.
 
@@ -165,17 +161,14 @@ Valeurs manquantes et qualité des données
 
 La documentation UCI indique aucune valeur manquante sur ce dataset.
 
-​
 
 En pratique, on vérifie quand même (df.isna().sum()) et la présence de quelques doublons possibles.
 
-    ​
 
 Cible transformée : ln(area + 1)
 
 area est ultra‑skewée : la plupart des feux brûlent moins de 1 ha, quelques cas extrêmes dépassent 500 ha.
 
-​
 
 La transformation ln⁡(area+1)ln(area+1) :
 
@@ -183,21 +176,16 @@ Compresse les gros feux (réduit le poids des extrêmes).
 
 Rapproche la distribution d’une forme plus “gaussienne”, ce qui stabilise de nombreux modèles.
 
-    ​
 
 Comme dans le guide médical, il faut penser à l’échelle de la cible : ici, les métriques finales doivent être interprétées en hectares
 (d’où la re‑transformation avec expm1).
-
-    ​
 
 Encodage des variables catégorielles
 
 month et day sont nominales (pas ordinales strictement dans cette formulation UCI), on utilise donc One‑Hot Encoding.
 
 ​
-
 Attention au data leakage : l’encodeur est appris dans le Pipeline, donc uniquement sur le train, puis appliqué au test, ce qui évite de “voir le futur”. (Même principe que pour l’imputation dans ton guide initial, mais appliqué à l’encodage.)
-
 
 ---
 
@@ -209,17 +197,13 @@ Histogrammes de area et area_log :
 
 area → massivement concentrée sur 0 avec quelques valeurs énormes.
 
-​
 
 area_log → plus “lisse”, plus exploitable par des modèles linéaires ou des métriques classiques.
-
-        ​
 
 Relations avec les features
 
 Quelques axes d’exploration typiques :
 
-​
 Saison / mois :
 
 Plus de feux en été (juil–sep), lié à temp élevée, RH faible, DC et ISI élevés.
@@ -242,7 +226,6 @@ Objectif : généralisation vs surapprentissage
 
 On cherche un modèle qui donne une bonne précision moyenne, mais surtout qui ne sous‑estime pas de façon catastrophique certains grands feux.
 
-​
 
 Split classique : train_test_split(test_size=0.2, random_state=42) (80/20).
 
@@ -250,7 +233,6 @@ Possibilités d’aller plus loin :
 
 k‑fold cross‑validation (ex : 10 folds) pour stabiliser les mesures étant donné la petite taille du dataset (517 lignes).
 
-​
 
 Répéter les splits (comme Cortez & Morais : 10‑fold × 30 runs) pour mieux évaluer la robustesse du modèle
 
@@ -260,7 +242,6 @@ Répéter les splits (comme Cortez & Morais : 10‑fold × 30 runs) pour mieux �
 
 La logique générale est la même que dans ton exemple médical, mais appliquée à une cible continue.
 
-​
 
 Chaque arbre de décision apprend une fonction “if/else” qui prédît une surface brûlée à partir des features (par exemple, si DC > seuil et ISI > seuil alors feu plus grand).
 
@@ -270,7 +251,6 @@ Bootstrap sur les lignes → arbres variés.
 
 Sous‑ensemble aléatoire de variables considérées à chaque split → explore différentes combinaisons météo/spatiales.
 
-        ​
 
 En sortie, pour un nouvel incident :
 
@@ -296,7 +276,6 @@ Métriques plus fines (dans l’esprit de Cortez & Morais)
 
 REC curve (Regression Error Characteristic) : pour un seuil d’erreur E donné (par ex. 10 ha), on mesure la proportion de feux prédits avec une erreur ≤ E.
 
-​
 
 Permet de dire : “Dans X% des cas, l’erreur est inférieure à 10 ha.”
 
