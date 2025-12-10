@@ -157,7 +157,7 @@ plt.show()
 
 ## 3. Analyse Approfondie : Nettoyage (Data Wrangling)
 
-Valeurs manquantes et qualité des données
+- Valeurs manquantes et qualité des données
 
 La documentation UCI indique aucune valeur manquante sur ce dataset.
 
@@ -165,7 +165,7 @@ La documentation UCI indique aucune valeur manquante sur ce dataset.
 En pratique, on vérifie quand même (df.isna().sum()) et la présence de quelques doublons possibles.
 
 
-Cible transformée : ln(area + 1)
+- Cible transformée : ln(area + 1)
 
 area est ultra‑skewée : la plupart des feux brûlent moins de 1 ha, quelques cas extrêmes dépassent 500 ha.
 
@@ -180,7 +180,7 @@ Rapproche la distribution d’une forme plus “gaussienne”, ce qui stabilise 
 Comme dans le guide médical, il faut penser à l’échelle de la cible : ici, les métriques finales doivent être interprétées en hectares
 (d’où la re‑transformation avec expm1).
 
-Encodage des variables catégorielles
+- Encodage des variables catégorielles
 
 month et day sont nominales (pas ordinales strictement dans cette formulation UCI), on utilise donc One‑Hot Encoding.
 
@@ -191,7 +191,7 @@ Attention au data leakage : l’encodeur est appris dans le Pipeline, donc uniqu
 
 ## 4. Analyse Approfondie : Exploration (EDA)
 
-Distribution & skewness
+- Distribution & skewness
 
 Histogrammes de area et area_log :
 
@@ -200,7 +200,7 @@ area → massivement concentrée sur 0 avec quelques valeurs énormes.
 
 area_log → plus “lisse”, plus exploitable par des modèles linéaires ou des métriques classiques.
 
-Relations avec les features
+- Relations avec les features
 
 Quelques axes d’exploration typiques :
 
@@ -227,9 +227,9 @@ Objectif : généralisation vs surapprentissage
 On cherche un modèle qui donne une bonne précision moyenne, mais surtout qui ne sous‑estime pas de façon catastrophique certains grands feux.
 
 
-Split classique : train_test_split(test_size=0.2, random_state=42) (80/20).
+- Split classique : train_test_split(test_size=0.2, random_state=42) (80/20).
 
-Possibilités d’aller plus loin :
+- Possibilité d’aller plus loin :
 
 k‑fold cross‑validation (ex : 10 folds) pour stabiliser les mesures étant donné la petite taille du dataset (517 lignes).
 
