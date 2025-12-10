@@ -3,6 +3,8 @@
 # 📘 FOREST FIRES
 
 
+![FIRE](FIRE.png)
+
 ---
 
 ## 1. Le Contexte Métier et la Mission
@@ -15,13 +17,13 @@ Objectif : prédire la surface brûlée d’un feu de forêt dans le parc de Mon
 
 Enjeu métier :
 
-    Anticiper la gravité d’un incendie pour adapter les moyens de prévention et de lutte (alerte, mobilisation des équipes, évacuation).
+Anticiper la gravité d’un incendie pour adapter les moyens de prévention et de lutte (alerte, mobilisation des équipes, évacuation).
 
-    La “mauvaise” erreur n’est pas symétrique :
+La “mauvaise” erreur n’est pas symétrique :
 
-        Sous‑estimer une grande surface brûlée (prédire petit alors que le feu sera grand) → moyens insuffisants, dégâts majeurs.
+Sous‑estimer une grande surface brûlée (prédire petit alors que le feu sera grand) → moyens insuffisants, dégâts majeurs.
 
-        Sur‑estimer une surface (prédire grand pour un petit feu) → surcoût opérationnel, mais risque humain plus faible.
+Sur‑estimer une surface (prédire grand pour un petit feu) → surcoût opérationnel, mais risque humain plus faible.
         Dans ce contexte, on cherchera à mieux prédire les grands feux et/ou à réduire fortement les grosses sous‑estimations (métriques de type RMSE, quantiles de l’erreur, courbes REC comme dans Cortez & Morais)
 
 ### Les Données 
@@ -29,9 +31,9 @@ On utilise le dataset Forest Fires de l’UCI Machine Learning Repository, 517 f
 
 ​
 
-    X (features) :
+X (features) :
 
-        Spatiales : X, Y (coordonnées sur la carte du parc, 1–9).
+Spatiales : X, Y (coordonnées sur la carte du parc, 1–9).
 
 ​
 
@@ -46,7 +48,7 @@ Indices FWI : FFMC, DMC, DC, ISI (indices de sécheresse / inflammabilité).
 Météo directe : temp (°C), RH (% humidité), wind (km/h), rain (mm/m²).
 ​y (target) :
 
-    area : surface brûlée en hectares, de 0 à ~1090 ha, très fortement concentrée près de 0 (beaucoup de petits feux).
+area : surface brûlée en hectares, de 0 à ~1090 ha, très fortement concentrée près de 0 (beaucoup de petits feux).
 
 ​
 
@@ -161,7 +163,7 @@ plt.show()
 
 Valeurs manquantes et qualité des données
 
-    La documentation UCI indique aucune valeur manquante sur ce dataset.
+La documentation UCI indique aucune valeur manquante sur ce dataset.
 
 ​
 
@@ -171,15 +173,15 @@ En pratique, on vérifie quand même (df.isna().sum()) et la présence de quelqu
 
 Cible transformée : ln(area + 1)
 
-    area est ultra‑skewée : la plupart des feux brûlent moins de 1 ha, quelques cas extrêmes dépassent 500 ha.
+area est ultra‑skewée : la plupart des feux brûlent moins de 1 ha, quelques cas extrêmes dépassent 500 ha.
 
 ​
 
 La transformation ln⁡(area+1)ln(area+1) :
 
-    Compresse les gros feux (réduit le poids des extrêmes).
+Compresse les gros feux (réduit le poids des extrêmes).
 
-    Rapproche la distribution d’une forme plus “gaussienne”, ce qui stabilise de nombreux modèles.
+Rapproche la distribution d’une forme plus “gaussienne”, ce qui stabilise de nombreux modèles.
 
     ​
 
@@ -190,7 +192,7 @@ Comme dans le guide médical, il faut penser à l’échelle de la cible : ici, 
 
 Encodage des variables catégorielles
 
-    month et day sont nominales (pas ordinales strictement dans cette formulation UCI), on utilise donc One‑Hot Encoding.
+month et day sont nominales (pas ordinales strictement dans cette formulation UCI), on utilise donc One‑Hot Encoding.
 
 ​
 
@@ -203,9 +205,9 @@ Attention au data leakage : l’encodeur est appris dans le Pipeline, donc uniqu
 
 Distribution & skewness
 
-    Histogrammes de area et area_log :
+Histogrammes de area et area_log :
 
-        area → massivement concentrée sur 0 avec quelques valeurs énormes.
+area → massivement concentrée sur 0 avec quelques valeurs énormes.
 
 ​
 
@@ -218,20 +220,19 @@ Relations avec les features
 Quelques axes d’exploration typiques :
 
 ​
+Saison / mois :
 
-    Saison / mois :
+Plus de feux en été (juil–sep), lié à temp élevée, RH faible, DC et ISI élevés.
 
-        Plus de feux en été (juil–sep), lié à temp élevée, RH faible, DC et ISI élevés.
+Météo directe :
 
-    Météo directe :
+temp : les feux importants sont plus probables à températures élevées.
 
-        temp : les feux importants sont plus probables à températures élevées.
+rain : souvent 0 au moment de l’incident, les grandes surfaces brûlées surviennent en absence de pluie.
 
-        rain : souvent 0 au moment de l’incident, les grandes surfaces brûlées surviennent en absence de pluie.
+Indices FWI :
 
-    Indices FWI :
-
-        DC (sécheresse à long terme) et ISI (vitesse de propagation) ont tendance à être plus élevés pour les feux plus importants.
+DC (sécheresse à long terme) et ISI (vitesse de propagation) ont tendance à être plus élevés pour les feux plus importants.
 
 ---
 
@@ -243,11 +244,11 @@ On cherche un modèle qui donne une bonne précision moyenne, mais surtout qui n
 
 ​
 
-    Split classique : train_test_split(test_size=0.2, random_state=42) (80/20).
+Split classique : train_test_split(test_size=0.2, random_state=42) (80/20).
 
-    Possibilités d’aller plus loin :
+Possibilités d’aller plus loin :
 
-        k‑fold cross‑validation (ex : 10 folds) pour stabiliser les mesures étant donné la petite taille du dataset (517 lignes).
+k‑fold cross‑validation (ex : 10 folds) pour stabiliser les mesures étant donné la petite taille du dataset (517 lignes).
 
 ​
 
@@ -261,21 +262,21 @@ La logique générale est la même que dans ton exemple médical, mais appliqué
 
 ​
 
-    Chaque arbre de décision apprend une fonction “if/else” qui prédît une surface brûlée à partir des features (par exemple, si DC > seuil et ISI > seuil alors feu plus grand).
+Chaque arbre de décision apprend une fonction “if/else” qui prédît une surface brûlée à partir des features (par exemple, si DC > seuil et ISI > seuil alors feu plus grand).
 
-    Le bagging + aléa sur les features :
+Le bagging + aléa sur les features :
 
-        Bootstrap sur les lignes → arbres variés.
+Bootstrap sur les lignes → arbres variés.
 
-        Sous‑ensemble aléatoire de variables considérées à chaque split → explore différentes combinaisons météo/spatiales.
+Sous‑ensemble aléatoire de variables considérées à chaque split → explore différentes combinaisons météo/spatiales.
 
         ​
 
-    En sortie, pour un nouvel incident :
+En sortie, pour un nouvel incident :
 
-        Chaque arbre donne une prédiction numérique (surface log‑transformée).
+Chaque arbre donne une prédiction numérique (surface log‑transformée).
 
-        La Random Forest moyenne ces valeurs pour donner la prédiction finale (puis on applique expm1).
+La Random Forest moyenne ces valeurs pour donner la prédiction finale (puis on applique expm1).
 
 Sur ce dataset, des travaux montrent que RF est compétitif mais que d’autres modèles (SVM gaussien sur ln(area+1) par exemple) peuvent mieux capturer les petits feux, qui sont majoritaires
 ---
@@ -287,27 +288,27 @@ Pour un problème de régression, la “matrice de confusion” n’existe pas, 
 ​
 Métriques de base
 
-    MAE (Mean Absolute Error) en hectares → erreur moyenne absolue sur la surface brûlée.
+MAE (Mean Absolute Error) en hectares → erreur moyenne absolue sur la surface brûlée.
 
-    RMSE (Root Mean Squared Error) en hectares → pénalise davantage les grandes erreurs (sous‑estimations ou sur‑estimations massives).
+RMSE (Root Mean Squared Error) en hectares → pénalise davantage les grandes erreurs (sous‑estimations ou sur‑estimations massives).
 
 Métriques plus fines (dans l’esprit de Cortez & Morais)
 
-    REC curve (Regression Error Characteristic) : pour un seuil d’erreur E donné (par ex. 10 ha), on mesure la proportion de feux prédits avec une erreur ≤ E.
+REC curve (Regression Error Characteristic) : pour un seuil d’erreur E donné (par ex. 10 ha), on mesure la proportion de feux prédits avec une erreur ≤ E.
 
 ​
 
-    Permet de dire : “Dans X% des cas, l’erreur est inférieure à 10 ha.”
+Permet de dire : “Dans X% des cas, l’erreur est inférieure à 10 ha.”
 
 Analyse séparée des petits feux (area < 1 ha) vs grands feux (area > 50 ha, seuil à définir) pour vérifier que le modèle n’ignore pas les cas rares mais critiques
 
 ### Conclusion du Projet
 Le projet complet consiste donc à :
 
-    Comprendre l’enjeu : prioriser la bonne allocation des moyens de lutte, donc limiter les grosses sous‑estimations des grands feux.
+Comprendre l’enjeu : prioriser la bonne allocation des moyens de lutte, donc limiter les grosses sous‑estimations des grands feux.
 
-    Construire une pipeline propre (encodage, transformation log, modèle, cross‑validation).
+Construire une pipeline propre (encodage, transformation log, modèle, cross‑validation).
 
-    Choisir des métriques adaptées (MAE/RMSE sur l’échelle ha, REC, analyse des grands feux) et non se limiter à un score unique.
+Choisir des métriques adaptées (MAE/RMSE sur l’échelle ha, REC, analyse des grands feux) et non se limiter à un score unique.
 
 C’est la même “anatomie” de projet que dans ton exemple médical, mais transposée à un problème de régression environnementale plutôt qu’à un problème de classification médicale.
